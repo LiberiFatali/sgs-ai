@@ -1,0 +1,2 @@
+https://github.com/tensorflow/serving
+commit 606ce34a3a279dd487f15f59b3c1bdb2cd570aaf
