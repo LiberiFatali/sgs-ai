@@ -1,0 +1,53 @@
+Adult
+	ass
+	penis
+	vagina
+	womanbreast
+	sex-intercourse
+	
+
+Alcohol
+	beer_can
+	beer bottle	
+	beer glass
+	wine bottle
+	whiskey jug
+	red wine
+
+
+Racy
+	ass
+	penis
+	vagina
+	womanbreast
+	sex-intercourse
+	middle-finger_hand-sign
+	butt-plug
+	dildo
+	pants
+	swimwear
+	thong
+	underwear
+	bikini, two-piece
+	maillot
+	maillot, tank suit
+	brassiere, bra, bandeau
+	miniskirt, mini
+	swimming trunks, bathing trunks	
+	
+
+Violence
+	violence-ufc
+	
+
+Weapon
+	pistol
+	machine-gun
+	shotgun	
+	revolver, six-gun, six-shooter
+	rifle
+	assault rifle, assault gun
+	bow
+	letter opener, paper knife, paperknife	
+	chain saw, chainsaw
+	hammer
