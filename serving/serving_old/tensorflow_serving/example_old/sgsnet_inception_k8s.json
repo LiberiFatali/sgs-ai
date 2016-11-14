@@ -1,0 +1,61 @@
+{
+  "apiVersion": "v1",
+  "kind": "ReplicationController",
+  "metadata": {
+    "name": "inception-controller"
+  },
+  "spec": {
+    "replicas": 3,
+    "selector": {
+      "worker": "inception-pod"
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "worker": "inception-pod"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "inception-container",
+            "image": "inception_serving",
+            "command": [
+              "/bin/sh",
+              "-c"
+            ],
+            "args": [
+              "/serving/bazel-bin/tensorflow_serving/example/inception_batching_inference --port=9000 /serving/sgsnet_inception-v3-export &> inception_log & python /serving/bazel-bin/tensorflow_serving/example/sgsnet_inception_batching_client 2222 &> sgsnet_log &"
+            ],
+            "ports": [
+              {
+                "containerPort": 2222
+              }
+            ]
+          }
+        ],
+        "restartPolicy": "Always"
+      }
+    }
+  }
+}
+
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "inception-service"
+  },
+  "spec": {
+    "ports": [
+      {
+        "port": 2222,
+        "targetPort": 2222
+      }
+    ],
+    "selector": {
+      "worker": "inception-pod"
+    },
+    "type": "LoadBalancer"
+  }
+}
