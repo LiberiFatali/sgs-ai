@@ -80,6 +80,39 @@ py_binary(
 )
 
 # HieuNM
+serving_proto_library(
+    name = "inception_inference_proto",
+    srcs = ["inception_inference.proto"],
+    has_services = 1,
+    cc_api_version = 2,
+    cc_grpc_version = 1,
+)
+
+cc_binary(
+    name = "sgsnet_1017_inception_inference",
+    srcs = [
+        "sgsnet_1017_inception_inference.cc",
+    ],
+    linkopts = ["-lm"],
+    deps = [
+        ":inception_inference_proto",
+        "//tensorflow_serving/batching:basic_batch_scheduler",
+        "//tensorflow_serving/batching:batch_scheduler",
+        "//tensorflow_serving/core:manager",
+        "//tensorflow_serving/core:servable_handle",
+        "//tensorflow_serving/core:servable_id",
+        "//tensorflow_serving/servables/tensorflow:simple_servers",
+        "@grpc//:grpc++",
+        "@org_tensorflow//tensorflow/contrib/session_bundle",
+        "@org_tensorflow//tensorflow/contrib/session_bundle:manifest_proto_cc",
+        "@org_tensorflow//tensorflow/contrib/session_bundle:signature",
+        "@org_tensorflow//tensorflow/core:framework",
+        "@org_tensorflow//tensorflow/core:lib",
+        "@org_tensorflow//tensorflow/core:protos_all_cc",
+        "@org_tensorflow//tensorflow/core:tensorflow",
+    ],
+)
+
 py_binary(
     name = "sgsnet_1017_oversample_inception_export",
     srcs = [
